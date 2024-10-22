@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming Plattform</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+        }
+        header {
+            background: linear-gradient(135deg, #ff5733, #c70039);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        header img {
+            max-width: 200px;
+        }
+        nav {
+            background-color: #222;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ff5733;
+        }
+        nav a::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #ff5733;
+            left: 0;
+            bottom: 0;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        nav a:hover::before {
+            transform: scaleX(1);
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            color: white;
+        }
+        .update-button {
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .update-button:hover {
+            background-color: #c70039;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .video {
+            background-color: #222;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .video:hover {
+            transform: scale(1.02);
+        }
+        .video img {
+            width: 100%;
+            height: 200px;
+            cursor: pointer;
+            border: none;
+        }
+        .video-title {
+            font-size: 18px;
+            margin: 10px;
+            font-weight: bold;
+        }
+        .video-description {
+            color: #ddd;
+            margin: 0 10px 10px;
+        }
+        .video-category {
+            background-color: #444;
+            padding: 5px;
+            border-radius: 3px;
+            display: inline-block;
+            font-size: 14px;
+            margin: 10px;
+            color: #fff;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+        .modal-content {
+            background-color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .modal-content h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .modal-content p {
+            margin: 10px 0 20px;
+        }
+        .close-button {
+            background-color: #ff5733;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .close-button:hover {
+            background-color: #c70039;
+        }
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        /* New styles for icon and success message */
+        .icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        .success {
+            color: #4caf50;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="HalfFaceLogo.PNG" alt="Logo">
+    <button class="update-button" onclick="checkForUpdates()">Update suchen</button>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Trending</a>
+    <a href="#">Abonnements</a>
+    <a href="#">Bibliothek</a>
+    <a href="#">Kategorien</a>
+</nav>
+
+<div class="container">
+    <div class="category-header">Beliebte Videos</div>
+    <div class="video-grid">
+        <div class="video" onclick="location.href='video1.html';">
+            <img src="blau.JPEG" alt="Thumbnail">
+            <div class="video-title">Titel des Videos 1</div>
+            <div class="video-description">Beschreibung des Videos 1. Hier kannst du etwas über den Inhalt des Videos schreiben.</div>
+            <div class="video-category">Kategorie: Musik</div>
+        </div>
+        <div class="video" onclick="location.href='video2.html';">
+            <img src="blau.JPEG" alt="Thumbnail">
+            <div class="video-title">Titel des Videos 2</div>
+            <div class="video-description">Beschreibung des Videos 2. Hier kannst du etwas über den Inhalt des Videos schreiben.</div>
+            <div class="video-category">Kategorie: Filme</div>
+        </div>
+        <div class="video" onclick="location.href='video3.html';">
+            <img src="blau.JPEG" alt="Thumbnail">
+            <div class="video-title">Titel des Videos 3</div>
+            <div class="video-description">Beschreibung des Videos 3. Hier kannst du etwas über den Inhalt des Videos schreiben.</div>
+            <div class="video-category">Kategorie: Spiele</div>
+        </div>
+        <div class="video" onclick="location.href='video4.html';">
+            <img src="blau.JPEG" alt="Thumbnail">
+            <div class="video-title">Titel des Videos 4</div>
+            <div class="video-description">Beschreibung des Videos 4. Hier kannst du etwas über den Inhalt des Videos schreiben.</div>
+            <div class="video-category">Kategorie: Nachrichten</div>
+        </div>
+    </div>
+
+    <div class="category-header">Neueste Videos</div>
+    <div class="video-grid">
+        <div class="video" onclick="location.href='video5.html';">
+            <img src="blau.JPEG" alt="Thumbnail">
+            <div class="video-title">Titel des Videos 5</div>
+            <div class="video-description">Beschreibung des Videos 5. Hier kannst du etwas über den Inhalt des Videos schreiben.</div>
+            <div class="video-category">Kategorie: Unterhaltung</div>
+        </div>
+        <div class="video" onclick="location.href='video6.html';">
+            <img src="blau.JPEG" alt="Thumbnail">
+            <div class="video-title">Titel des Videos 6</div>
+            <div class="video-description">Beschreibung des Videos 6. Hier kannst du etwas über den Inhalt des Videos schreiben.</div>
+            <div class="video-category">Kategorie: Wissenschaft</div>
+        </div>
+        <div class="video" onclick="location.href='video7.html';">
+            <img src="blau.JPEG" alt="Thumbnail">
+            <div class="video-title">Titel des Videos 7</div>
+            <div class="video-description">Beschreibung des Videos 7. Hier kannst du etwas über den Inhalt des Videos schreiben.</div>
+            <div class="video-category">Kategorie: Technik</div>
+        </div>
+        <div class="video" onclick="location.href='video8.html';">
+            <img src="blau.JPEG" alt="Thumbnail">
+            <div class="video-title">Titel des Videos 8</div>
+            <div class="video-description">Beschreibung des Videos 8. Hier kannst du etwas über den Inhalt des Videos schreiben.</div>
+            <div class="video-category">Kategorie: Reisen</div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="updateModal">
+    <div class="modal-content">
+        <div class="icon">✅</div>
+        <h2>Aktualisierung</h2>
+        <p class="success">Sie sind auf der aktuellsten Version!</p>
+        <p>Keine Updates verfügbar.</p>
+        <button class="close-button" onclick="closeModal()">Schließen</button>
+    </div>
+</div>
+
+<script>
+    function checkForUpdates() {
+        // Set a flag in local storage before reloading
+        localStorage.setItem('showUpdateModal', 'true');
+        // Reload the page
+        location.reload();
+    }
+
+    function closeModal() {
+        // Close the modal
+        document.getElementById('updateModal').style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if we need to show the modal after reload
+        if (localStorage.getItem('showUpdateModal') === 'true') {
+            // Show the modal
+            document.getElementById('updateModal').style.display = 'flex';
+            // Remove the flag
+            localStorage.removeItem('showUpdateModal');
+        }
+    });
+
+    document.addEventListener('fullscreenchange', function() {
+        if (document.fullscreenElement) {
+            window.chrome.webview.postMessage('enterFullscreen');
+        }
+    });
+</script>
+
+</body>
+</html>
