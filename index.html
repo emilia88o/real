@@ -259,23 +259,17 @@
 
 <script>
     function checkForUpdates() {
-        // Set a flag in local storage before reloading
         localStorage.setItem('showUpdateModal', 'true');
-        // Reload the page
         location.reload();
     }
 
     function closeModal() {
-        // Close the modal
         document.getElementById('updateModal').style.display = 'none';
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        // Check if we need to show the modal after reload
         if (localStorage.getItem('showUpdateModal') === 'true') {
-            // Show the modal
             document.getElementById('updateModal').style.display = 'flex';
-            // Remove the flag
             localStorage.removeItem('showUpdateModal');
         }
     });
@@ -284,6 +278,11 @@
         if (document.fullscreenElement) {
             window.chrome.webview.postMessage('enterFullscreen');
         }
+    });
+
+    // Deaktiviert den Rechtsklick
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
     });
 </script>
 
