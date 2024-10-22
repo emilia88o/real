@@ -9,7 +9,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #000; /* Hintergrund schwarz */
+            background-color: #000;
         }
         header {
             background: linear-gradient(135deg, #ff5733, #c70039);
@@ -19,7 +19,7 @@
             position: relative;
         }
         header img {
-            max-width: 200px; /* Anpassung je nach Logo-Größe */
+            max-width: 200px;
         }
         nav {
             background-color: #222;
@@ -27,8 +27,6 @@
             padding: 15px;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
         }
         nav a {
             color: white;
@@ -59,12 +57,22 @@
             max-width: 1200px;
             margin: auto;
             padding: 20px;
-            color: white; /* Textfarbe für den Container */
+            color: white;
         }
-        .category-header {
-            font-size: 28px;
-            margin: 20px 0;
-            color: #fff; /* Textfarbe für die Kategorieüberschrift */
+        .update-button {
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: absolute;
+            top: 20px; /* Position unter dem Header */
+            right: 20px; /* Position am rechten Rand */
+        }
+        .update-button:hover {
+            background-color: #c70039;
         }
         .video-grid {
             display: grid;
@@ -72,20 +80,19 @@
             gap: 20px;
         }
         .video {
-            background-color: #222; /* Hintergrundfarbe für Videos */
+            background-color: #222;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
             overflow: hidden;
             transition: transform 0.3s;
-            position: relative; /* Für das Thumbnail */
         }
         .video:hover {
             transform: scale(1.02);
         }
         .video img {
             width: 100%;
-            height: 200px; /* Höhe des Thumbnails */
-            cursor: pointer; /* Zeigt, dass das Thumbnail klickbar ist */
+            height: 200px;
+            cursor: pointer;
             border: none;
         }
         .video-title {
@@ -94,17 +101,17 @@
             font-weight: bold;
         }
         .video-description {
-            color: #ddd; /* Textfarbe für die Beschreibung */
+            color: #ddd;
             margin: 0 10px 10px;
         }
         .video-category {
-            background-color: #444; /* Hintergrundfarbe für die Kategorie */
+            background-color: #444;
             padding: 5px;
             border-radius: 3px;
             display: inline-block;
             font-size: 14px;
             margin: 10px;
-            color: #fff; /* Textfarbe für die Kategorie */
+            color: #fff;
         }
     </style>
 </head>
@@ -112,6 +119,7 @@
 
 <header>
     <img src="HalfFaceLogo.PNG" alt="Logo">
+    <button class="update-button" onclick="window.location.reload();">Update suchen</button>
 </header>
 
 <nav>
@@ -123,7 +131,7 @@
 </nav>
 
 <div class="container">
-    <div class="category-header">Neue Filme</div>
+    <div class="category-header">Beliebte Videos</div>
     <div class="video-grid">
         <div class="video" onclick="location.href='video1.html';">
             <img src="blau.JPEG" alt="Thumbnail">
@@ -152,9 +160,6 @@
             <div class="video-description">Beschreibung des Videos 4. Hier kannst du etwas über den Inhalt des Videos schreiben.</div>
             <div class="video-category">Kategorie: Nachrichten</div>
         </div>
-
-        <!-- Weitere Video-Div-Elemente hier... -->
-
     </div>
 
     <div class="category-header">Neueste Videos</div>
@@ -186,14 +191,10 @@
             <div class="video-description">Beschreibung des Videos 8. Hier kannst du etwas über den Inhalt des Videos schreiben.</div>
             <div class="video-category">Kategorie: Reisen</div>
         </div>
-
-        <!-- Weitere Video-Div-Elemente hier... -->
-
     </div>
 </div>
 
 <script>
-    // Vollbild-Event-Listener hinzufügen
     document.addEventListener('fullscreenchange', function() {
         if (document.fullscreenElement) {
             window.chrome.webview.postMessage('enterFullscreen');
