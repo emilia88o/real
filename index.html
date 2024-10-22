@@ -68,8 +68,8 @@
             cursor: pointer;
             transition: background-color 0.3s;
             position: absolute;
-            top: 20px; /* Position unter dem Header */
-            right: 20px; /* Position am rechten Rand */
+            top: 20px;
+            right: 20px;
         }
         .update-button:hover {
             background-color: #c70039;
@@ -118,8 +118,8 @@
 <body>
 
 <header>
-    <img src="" alt="Logo">
-    <button class="update-button" onclick="window.location.reload();">Update suchen</button>
+    <img src="HalfFaceLogo.PNG" alt="Logo">
+    <button class="update-button" onclick="checkForUpdates()">Update suchen</button>
 </header>
 
 <nav>
@@ -195,11 +195,9 @@
 </div>
 
 <script>
-    document.addEventListener('fullscreenchange', function() {
-        if (document.fullscreenElement) {
-            window.chrome.webview.postMessage('enterFullscreen');
-        }
-    });
+    function checkForUpdates() {
+        window.open('https://emilia88o.github.io/updateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee77/update.html', 'UpdatePopup', 'width=600,height=400');
+    }
 </script>
 
 </body>
