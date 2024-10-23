@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming Plattform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #141414;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        header img {
+            max-width: 120px;
+        }
+        .update-button {
+            background-color: #e50914;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .update-button:hover {
+            background-color: #f40612;
+        }
+        nav {
+            background-color: #000;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #e50914;
+        }
+        .container {
+            padding: 20px;
+        }
+        .category-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .video-grid {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 0;
+            scroll-snap-type: x mandatory;
+        }
+        .video {
+            flex: 0 0 auto;
+            margin-right: 15px;
+            background-color: #222;
+            border-radius: 8px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        .video:hover {
+            transform: scale(1.05);
+        }
+        .video img {
+            width: 200px;
+            height: 300px;
+            object-fit: cover;
+        }
+        .video-title {
+            font-size: 16px;
+            margin: 5px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        .video-description {
+            color: #ddd;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .video-category {
+            background-color: #e50914;
+            padding: 5px;
+            border-radius: 3px;
+            display: inline-block;
+            font-size: 12px;
+            color: #fff;
+            margin: 5px auto;
+        }
+        .iframe-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Für vertikale Anordnung */
+            z-index: 1000;
+        }
+        .iframe-container iframe {
+            width: 80%;
+            height: 80%;
+            border: none;
+            border-radius: 10px;
+        }
+        .close-iframe {
+            background-color: #e50914;
+            border: none;
+            color: white;
+            padding: 15px 25px; /* Größerer Button */
+            border-radius: 5px;
+            font-size: 20px; /* Größere Schriftgröße */
+            cursor: pointer;
+            animation: blink 0.5s infinite alternate; /* Schnelleres Blinken */
+            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.5);
+            margin-top: 20px; /* Abstand nach oben */
+        }
+        .close-iframe:hover {
+            background-color: #f40612;
+        }
+
+        @keyframes blink {
+            0% {
+                box-shadow: 0 0 30px rgba(255, 0, 0, 1);
+            }
+            100% {
+                box-shadow: 0 0 60px rgba(255, 0, 0, 1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="HalfFaceLogo.PNG" alt="Logo">
+    <button class="update-button" onclick="openIframe()">Update suchen</button>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Trending</a>
+    <a href="#">Abonnements</a>
+    <a href="#">Bibliothek</a>
+    <a href="#">Kategorien</a>
+</nav>
+
+<div class="container">
+    <div class="category-header">Beliebte Videos</div>
+    <div class="video-grid">
+        <div class="video" onclick="location.href='video1.html';">
+            <img src="blau.JPEG" alt="Thumbnail">
+            <div class="video-title">Titel des Videos 1</div>
+            <div class="video-description">Beschreibung des Videos 1.</div>
+            <div class="video-category">Kategorie: Musik</div>
+        </div>
+        <div class="video" onclick="location.href='video2.html';">
+            <img src="blau.JPEG" alt="Thumbnail">
+            <div class="video-title">Titel des Videos 2</div>
+            <div class="video-description">Beschreibung des Videos 2.</div>
+            <div class="video-category">Kategorie: Film</div>
+        </div>
+        <div class="video" onclick="location.href='video3.html';">
+            <img src="blau.JPEG" alt="Thumbnail">
+            <div class="video-title">Titel des Videos 3</div>
+            <div class="video-description">Beschreibung des Videos 3.</div>
+            <div class="video-category">Kategorie: Dokumentation</div>
+        </div>
+        <!-- Weitere Videos hier hinzufügen -->
+    </div>
+</div>
+
+<div class="iframe-container" id="iframeContainer">
+    <iframe id="updateIframe" src=""></iframe>
+    <button class="close-iframe" onclick="closeIframe()">Schließen</button>
+</div>
+
+<script>
+    function openIframe() {
+        document.getElementById('updateIframe').src = 'https://emilia88o.github.io/updaterapplication9014127/update.html';
+        document.getElementById('iframeContainer').style.display = 'flex';
+    }
+
+    function closeIframe() {
+        document.getElementById('iframeContainer').style.display = 'none';
+        document.getElementById('updateIframe').src = ''; // Clear the src to stop loading
+    }
+
+    // Disable right-click
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+    });
+</script>
+
+</body>
+</html>
