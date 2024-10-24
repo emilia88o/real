@@ -30,7 +30,7 @@
             font-size: 16px;
             margin-right: 15px;
         }
-        .update-button {
+        .update-button, .reload-button {
             background-color: #e50914;
             border: none;
             color: white;
@@ -38,8 +38,9 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-left: 10px;
         }
-        .update-button:hover {
+        .update-button:hover, .reload-button:hover {
             background-color: #f40612;
         }
         nav {
@@ -157,6 +158,7 @@
     <img src="HalfFaceLogo.PNG" alt="Logo">
     <div class="version-number">Version 0.0</div>
     <button class="update-button" onclick="openPopup()">Update suchen</button>
+    <button class="reload-button" onclick="reloadPage()">Neu laden</button>
 </header>
 
 <nav>
@@ -207,6 +209,10 @@
     }
 
     function closePopup() {
+        window.location.href = 'https://emilia88o.github.io/real/';
+    }
+
+    function reloadPage() {
         window.location.href = 'https://emilia88o.github.io/real/';
     }
 
