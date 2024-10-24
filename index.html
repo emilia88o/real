@@ -207,9 +207,11 @@
         window.location.href = window.location.pathname + "?update=true";
     }
 
-    // Überprüfen, ob der Parameter gesetzt ist
+    // Überprüfen, ob der Parameter gesetzt ist und iframe öffnen
     if (new URLSearchParams(window.location.search).get('update') === 'true') {
         openIframe(); // iframe öffnen
+        // Parameter entfernen, damit es nicht erneut geöffnet wird
+        history.replaceState(null, '', window.location.pathname);
     }
 
     function openIframe() {
