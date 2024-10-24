@@ -220,6 +220,7 @@
     function closeIframe() {
         document.getElementById('iframeContainer').style.display = 'none';
         document.getElementById('updateIframe').src = ''; // Clear the src to stop loading
+        window.location.reload(); // Reload the page
     }
 
     // Disable right-click
