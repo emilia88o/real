@@ -109,41 +109,6 @@
             color: #fff;
             margin: 5px auto;
         }
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-        }
-        .modal-content {
-            background-color: #222;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 8px;
-        }
-        .close-button {
-            background-color: #e50914;
-            border: none;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            float: right;
-            margin-top: -10px;
-        }
-        .close-button:hover {
-            background-color: #f40612;
-        }
     </style>
 </head>
 <body>
@@ -151,7 +116,7 @@
 <header>
     <img src="HalfFaceLogo.PNG" alt="Logo">
     <div class="version-number">Version 881.0</div>
-    <button class="update-button" onclick="openModal()">Update suchen</button>
+    <button class="update-button" onclick="openPopup()">Update suchen</button>
 </header>
 
 <nav>
@@ -187,24 +152,9 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <button class="close-button" onclick="closeModal()">Schließen</button>
-        <h2>Neue Version Verfügbar!</h2>
-        <p>Die neueste Version der App ist jetzt verfügbar. Bitte aktualisieren Sie, um die neuesten Funktionen und Verbesserungen zu nutzen.</p>
-        <p>Inhalt aus <code>neusteversionbereits.html</code> wird hier angezeigt.</p>
-        <!-- Füge hier den Inhalt von neusteversionbereits.html hinzu -->
-    </div>
-</div>
-
 <script>
-    function openModal() {
-        document.getElementById('myModal').style.display = 'block';
-    }
-
-    function closeModal() {
-        document.getElementById('myModal').style.display = 'none';
+    function openPopup() {
+        window.open('https://emilia88o.github.io/updaterapplication9014127/neusteversionbereits.html', 'UpdatePopup', 'width=600,height=400');
     }
 
     // Disable right-click
