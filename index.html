@@ -30,6 +30,11 @@
             font-size: 16px;
             margin-right: 15px;
         }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
         .update-button, .reload-button {
             background-color: #e50914;
             border: none;
@@ -38,7 +43,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-left: 10px;
+            margin-top: 10px; /* Abstand zwischen den Buttons */
         }
         .update-button:hover, .reload-button:hover {
             background-color: #f40612;
@@ -157,8 +162,10 @@
 <header>
     <img src="HalfFaceLogo.PNG" alt="Logo">
     <div class="version-number">Version 0.0</div>
-    <button class="update-button" onclick="openPopup()">Update suchen</button>
-    <button class="reload-button" onclick="reloadPage()">Neu laden</button>
+    <div class="button-container">
+        <button class="reload-button" onclick="reloadPage()">Neu laden</button>
+        <button class="update-button" onclick="openPopup()">Update suchen</button>
+    </div>
 </header>
 
 <nav>
