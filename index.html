@@ -109,49 +109,6 @@
             color: #fff;
             margin: 5px auto;
         }
-        .iframe-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 1000;
-        }
-        .iframe-container iframe {
-            width: 80%;
-            height: 80%;
-            border: none;
-            border-radius: 10px;
-        }
-        .close-iframe {
-            background-color: #e50914;
-            border: none;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 5px;
-            font-size: 20px;
-            cursor: pointer;
-            animation: blink 0.5s infinite alternate;
-            box-shadow: 0 4px 10px rgba(255, 0, 0, 0.5);
-            margin-top: 20px;
-        }
-        .close-iframe:hover {
-            background-color: #f40612;
-        }
-
-        @keyframes blink {
-            0% {
-                box-shadow: 0 0 30px rgba(255, 0, 0, 1);
-            }
-            100% {
-                box-shadow: 0 0 60px rgba(255, 0, 0, 1);
-            }
-        }
     </style>
 </head>
 <body>
@@ -159,7 +116,7 @@
 <header>
     <img src="HalfFaceLogo.PNG" alt="Logo">
     <div class="version-number">Version 881.0</div>
-    <button class="update-button" onclick="triggerUpdate()">Update suchen</button>
+    <button class="update-button">Update suchen</button>
 </header>
 
 <nav>
@@ -195,36 +152,7 @@
     </div>
 </div>
 
-<div class="iframe-container" id="iframeContainer">
-    <iframe id="updateIframe" src=""></iframe>
-    <button class="close-iframe" onclick="closeIframe()">Schließen</button>
-</div>
-
 <script>
-    // Funktion zum Auslösen der Update-Suche
-    function triggerUpdate() {
-        // Seite neu laden mit einem Parameter
-        window.location.href = window.location.pathname + "?update=true";
-    }
-
-    // Überprüfen, ob der Parameter gesetzt ist und iframe öffnen
-    if (new URLSearchParams(window.location.search).get('update') === 'true') {
-        openIframe(); // iframe öffnen
-        // Parameter entfernen, damit es nicht erneut geöffnet wird
-        history.replaceState(null, '', window.location.pathname);
-    }
-
-    function openIframe() {
-        document.getElementById('updateIframe').src = 'neueversiondownloaden.html';
-        document.getElementById('iframeContainer').style.display = 'flex';
-    }
-
-    function closeIframe() {
-        document.getElementById('iframeContainer').style.display = 'none';
-        document.getElementById('updateIframe').src = ''; // Clear the src to stop loading
-        window.location.reload(); // Reload the page
-    }
-
     // Disable right-click
     document.addEventListener('contextmenu', function(event) {
         event.preventDefault();
